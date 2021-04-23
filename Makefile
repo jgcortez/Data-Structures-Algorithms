@@ -1,4 +1,4 @@
-EXEC = run
+EXEC = dijkstra
 CC = g++ -O4
 CFLAGS = -c -Wall
 
