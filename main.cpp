@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
     }
 
     // read in n = |V| and m = |E|
-    v_fscanf = fscanf(if (ifile, "%d%d", &n, &m);
+    v_fscanf = fscanf(ifile, "%d%d", &n, &m);
     if (v_fscanf < 2){
         printf("ErrorGLX2: fscanf returns %d.\n", v_fscanf);
         exit(1);
@@ -59,8 +59,8 @@ int main(int argc, char *argv[]){
     }
 
     // read in the edges and construct adjacency lists
-    for (i = 1; i <= m, i++){
-        v_fscanf = fscanf(ifile, "&d&d&d&f", &edge_id, &u, &v, &w);
+    for (i = 1; i <= m; i++){
+        v_fscanf = fscanf(ifile, "%d%d%d%f", &edge_id, &u, &v, &w);
         if (v_fscanf < 4){
             printf("Error: fscanf returns %d.\n", v_fscanf);
             exit(1);
@@ -153,13 +153,15 @@ int main(int argc, char *argv[]){
                 }
             }          
         } else if (0 == strcmp(word, "write")){
+//print(word);
             r_value = nextWord(word2);
             if (!r_value){
                 printf("ErrorGLX4: EOF\n");
                 continue;
             }
 
-            if (0 == strcmp(word, "path")){
+            if (0 == strcmp(word2, "path")){
+//printf(word2);
                 v_scanf = scanf("%d%d", &s_new, &t_new);
                 if (v_scanf != 2){
                     printf("ErrorGLX5: wrong return value for scanf\n");
