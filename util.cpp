@@ -53,7 +53,7 @@ int nextWord(char *word){
 //  end of a word
 //---------------------------------------------------
 
-    word[i] = "\0";
+    word[i] = '\0';
 
     return r_value;
 }
