@@ -26,9 +26,25 @@ void heapPrint(HEAP *heap);
 
 void MovingUp (HEAP *heap, int pos);
 
-pELEMENT DeleteMin (HEAP *heap, int *flag, int *count_Heapify)
+pELEMENT DeleteMin (HEAP *heap, int *flag, int *count_Heapify);
+
+void MovingDown(HEAP *heap, int pos, int *flag, int *count_Heapify);
+
+void BuildHeap(HEAP *heap, int *flag); //edit
+
+int Insert(HEAP *heap, pELEMENT item);
+
+int DecreaseKey (HEAP *heap, int pos, int newKey);
+
+// What else?
+
+// Helpers
+
+int left(int i);
+
+int right(int i);
+
+void exchange(HEAP *heap, int &a, int &b);
 
 
-//void Insert(HEAP , ELEMENT); //edit
-//heapInit
-//DeleteMIn
+#endif
