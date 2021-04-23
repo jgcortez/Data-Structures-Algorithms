@@ -147,7 +147,7 @@ int Insert(HEAP *heap, pELEMENT item){
 
 int DecreaseKey (HEAP *heap, int pos, int newKey){
     if (pos < 1 || pos > heap->size || newKey >= heap->H[pos]->key){
-        printf("Error: invalid call to DecreaseKey\n");
+        //printf("Error: invalid call to DecreaseKey\n");
         return 1;
     }
     heap->H[pos]->key = newKey;
