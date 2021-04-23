@@ -144,7 +144,7 @@ int main(int argc, char *argv[]){
             } else{
                 printf("Query: %s %d %d %d\n", word, source_new, destination_new, flag_new);
                 if (source_new < 1 || source_new > n || flag_new < 0 || flag_new > 1){
-                    printf("error: invalid find query\n");
+                    printf("Error: invalid find query\n");
                 } else{
                     source = source_new;
                     destination = destination_new;
