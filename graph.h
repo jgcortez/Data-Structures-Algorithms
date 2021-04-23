@@ -3,24 +3,16 @@
 
 #include <stdio.h>
 
-// XUE/01-array-of-structs
-
 typedef struct TAG_VERTEX{
-    int color;      // color of vertex: in {0, 1, 2}
+    int color;      // color of vertex: in {0, 1, 2} for white, gray, and black, respectively
     int pi;         // predecessor of vertex: in {0, 1, ..., n}
     float dist;     // current distance from source vertex
     int pos;        // position in heap array
-    char *name;     // name of the POI represented by this vertex
+    // char *name;     // name of the POI represented by this vertex (unused and commented out).
 }VERTEX;
 typedef VERTEX *pVERTEX;
-/*
-V[1], V[2], ..., V[n] from an array of n structs of type VERTEX
-V[i] represents vertex i
-V[i].color is the color of vertex i
-V[i].pi is either 0 or the predecessor of vertex i
-V[i].dist is the current value of the source to i distance
-V[i].name is not used at this moment
-*/
+// V[1], V[2], ..., V[n] from an array of n structs of type VERTEX
+// V[i] represents vertex i
 
 typedef struct TAG_NODE{
     int u;      // start vertex u... Redundant safe guard
@@ -29,11 +21,8 @@ typedef struct TAG_NODE{
     TAG_NODE *next;     // pointer to next node
 }NODE;
 typedef NODE *pNODE;
-
-/*
-A[1], A[2], ..., A[n] form an array of n pointers of type pNODE
-A[i] is the adjancecy list of vertex i
-*/
+// A[1], A[2], ..., A[n] form an array of n pointers of type pNODE
+// A[i] is the adjancecy list of vertex i
 
 typedef struct TAG_PATH{
     int vertex;
