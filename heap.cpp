@@ -1,21 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <math.h>
 #include "heap.h"
 #include "graph.h"
 extern VERTEX *V;
 
 // XUE/01-array-of-structs
 
+//----------------------------------------------
+// heapFree (Prov)
+//----------------------------------------------
+
 void heapFree(HEAP *heap){
     free(heap->H);
     free(heap);
 }
 
-
-
 //----------------------------------------------
-//heapInit
+// heapInit
 //----------------------------------------------
 HEAP* heapInit(int capacity)
 {
@@ -28,7 +31,7 @@ HEAP* heapInit(int capacity)
 }
 
 //----------------------------------------------
-//heapPrint (Prov)
+// heapPrint (Prov)
 //----------------------------------------------
 
 void heapPrint(HEAP *heap){//edit parameters, *heap guessed
@@ -44,24 +47,9 @@ void heapPrint(HEAP *heap){//edit parameters, *heap guessed
     // printf("END heapPrint\n");
 }
 
-//minHeapify
-//buildHeap
-//writeHeap ?
-//insert
-//extractMin
-//decreaseKey
 //----------------------------------------------
-//HELPER
+// MovingUp (Prov)
 //----------------------------------------------
-//left
-//right
-//exchange
-//parent
-//----------------------------------------------
-// decreaseKey is movingUp
-// heapify is movingDown
-
-
 
 void MovingUp(HEAP *heap, int pos){
     pELEMENT temp;
@@ -80,18 +68,64 @@ void MovingUp(HEAP *heap, int pos){
     // print ("END MovingUp\n");
 }
 
-void MovingDown(HEAP *heap, int pos, int *flag, int *count_Heapify){//edit
-    //funct //heapify?
+//----------------------------------------------
+// MovingDown
+//----------------------------------------------
+
+void MovingDown(HEAP *heap, int pos, int *flag, int *count_Heapify){
+    //minHeapify?
+    int l = left(pos);
+	int r = right(pos);
+	int smallest;
+
+	if (l <= heap->size && heap->H[l]->key < heap->H[pos]->key) {
+		smallest = l;
+	}
+	else {
+		smallest = pos;
+	}
+
+	if (r <= heap->size && heap->H[r]->key < heap->H[smallest]->key) {
+		smallest = r;
+	}
+
+	if (smallest != pos) {
+		//Exchange H[i] and H[smallest]
+
+		exchange(heap, pos, smallest);
+		MovingDown(heap, smallest, flag, count_Heapify);
+	}
+	count_Heapify++;
+	//printf("Calls: %d\n", count);
 }
 
-void BuildHeap(HEAP *heap){//edit parameters?
+//----------------------------------------------
+// BuildHeap
+//----------------------------------------------
+
+void BuildHeap(HEAP *heap, int *flag){//edit parameters?
     int i;
+    int *count_Heapify = 0;
     //printf("BGN BuildHeap\n");
     for (i = heap->size/2; i > 0; i--){
-        MovingDown(heap, i, flag, count_Heapify):
+        MovingDown(heap, i, flag, count_Heapify);
     }
     //printf("END BuildHeap %d\n", *count_Heapify);
+
+    //
+//    int count = 0;
+//	for (int i = floor(heap->size / 2); i >= 1; i--) {
+//		minHeapify(heap, i, count);
+//	}
+//	if (f == 1) {
+//		printf("Number of Heapify calls: %d\n", count);
+//	}
+    //
 }
+
+//----------------------------------------------
+// Insert (Prov)
+//----------------------------------------------
 
 int Insert(HEAP *heap, pELEMENT item){
     if (heap->size >= heap->capacity){
@@ -107,6 +141,10 @@ int Insert(HEAP *heap, pELEMENT item){
     return 0;
 }
 
+//----------------------------------------------
+// DecreaseKey (Prov)
+//----------------------------------------------
+
 int DecreaseKey (HEAP *heap, int pos, int newKey){
     if (pos < 1 || pos > heap->size || newKey >= heap->H[pos]->key){
         printf("Error: invalid call to DecreaseKey\n");
@@ -116,6 +154,10 @@ int DecreaseKey (HEAP *heap, int pos, int newKey){
     MovingUp(heap, pos);
     return 0;
 }
+
+//----------------------------------------------
+// DeleteMin (Prov)
+//----------------------------------------------
 
 pELEMENT DeleteMin (HEAP *heap, int *flag, int *count_Heapify){
     
@@ -133,3 +175,33 @@ pELEMENT DeleteMin (HEAP *heap, int *flag, int *count_Heapify){
     V[min->vertex].pos = 0;                         //Maybe added
     return min;
 }
+
+
+
+//writeHeap ?
+//----------------------------------------------
+//HELPER
+//----------------------------------------------
+int left(int i) {
+	return (2 * i);
+}
+
+int right(int i) {
+	return (2 * i + 1);
+}
+
+void exchange(HEAP *heap, int &a, int &b) {
+	ELEMENT *temp = heap-> H[a];
+	heap->H[a] = heap->H[b];
+	heap->H[b] = temp;
+}
+
+
+// Unnecesary?
+// int parent(int i) {
+// 	return floor(i / 2);
+// }
+
+//----------------------------------------------
+// decreaseKey is movingUp
+// heapify is movingDown
