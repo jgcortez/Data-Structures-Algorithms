@@ -1,0 +1,98 @@
+R 1
+R 0
+I 1
+p
+K 0 1
+K 0 0
+p
+C 20
+R 1
+D 1
+p
+D 1
+p
+D 1
+p
+R 1
+p
+I 9
+p
+i 2
+p
+K 1 99
+p
+k 1 4
+p
+I 2
+p
+i 99
+p
+k 2 -3 
+p
+k 3 -9
+k 0 1
+p
+k -1 0
+p
+w
+C 0
+R 1
+R 0
+C 16
+I 1
+p
+i 2
+p
+i 99
+p
+C 20
+R 1
+p
+D 1
+p
+I 10
+p
+D 1
+p
+k 5 77
+D 1
+p
+i 1
+p
+k 4 2
+p
+D 0
+p
+i 6
+p
+D 1
+p
+C 0
+R 1
+p
+W
+C -1
+p
+D 1
+D 0
+p
+I 1
+p
+C 14
+I 1
+p
+I -1
+p
+I -99
+p
+i 12
+p
+k 1 2
+p
+k 9 1
+p
+s
+
+
+
+
